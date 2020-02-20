@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Payroll from './components/Payroll'
-import Navigation from './components/Navigation'
+import InputField from './components/InputField'
 
 
 
@@ -16,8 +16,8 @@ function App() {
 
   return (
     <div className="App">
+      <InputField />
       <Payroll />
-      <Navigation />
     </div>
   );
 }

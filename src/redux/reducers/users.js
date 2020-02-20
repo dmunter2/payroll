@@ -1,21 +1,29 @@
 import {ADD_USER} from '../actionTypes';
 
 const initialData = {
-    users: [],
-    byIds: {}
+    otherproperties: '',
+    users: [
+
+    ]
 };
 
 
 export default function(state = initialData, action){
     switch(action.type) {
         case ADD_USER: {
-            const {id, content} = action.payload;
+            const {content} = action.payload;
             return {
                 ...state,
-                users: [...state.users, id]
+                users: [
+                    ...state.users,
+                    {
+                        content: content
+                    }
+                ]
             }
         }
         default: 
             return state;
     }
 }
+

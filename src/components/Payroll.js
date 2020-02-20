@@ -1,22 +1,26 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 
+const Payroll = ({users}) => {
+    return(
 
-class Payroll extends React.Component{
+        <div>
 
-    constructor(props){
-        super()
-    
-    }
+    <h1>{users}</h1>
 
 
-    render(){
-
-        return(
-            <div>Hello</div>
-        )
-    }
+        </div>
+    )
 }
 
 
-export default Payroll;
+function mapStateToProps(state) {
+    console.log(state.users)
+    const users = state.users.content
+    return users;
+}
+
+
+
+export default connect(mapStateToProps)(Payroll);
