@@ -41,3 +41,35 @@
 .another{
   height: 200px;
 }
+
+/* These are the clas names for the indiviual components that make up 
+the body  */
+
+.header{
+border: 1px solid red;
+}
+
+.alldata{
+border: 1px solid red;
+
+}
+.navbar{
+border: 1px solid red;
+
+}
+
+
+/* This class holds the 3 components in the body component */
+.body-holder{
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 600px) {
+  .body-holder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

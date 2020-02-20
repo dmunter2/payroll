@@ -3,21 +3,27 @@ import {connect} from 'react-redux';
 
 
 const Payroll = ({users}) => {
+
     return(
 
         <div>
 
-    <h1>{users}</h1>
+           <h1>
+               {users.length
+               ? users.map((user, key) => {
+               return (<div key={key}>{user.content}</div>)
+               })
+               : "nothing here"}
+           </h1>
 
 
         </div>
-    )
-}
+    )}
 
 
 function mapStateToProps(state) {
     console.log(state.users)
-    const users = state.users.content
+    const users = state.users
     return users;
 }
 
