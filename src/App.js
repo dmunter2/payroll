@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Payroll from './components/Payroll'
-import InputField from './components/InputField'
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import Body from './components/Body';
+
 
 
 
@@ -15,11 +17,12 @@ function App() {
 
 
   return (
-    <div className="App">
-      <h1>Welcome</h1>
-      <InputField />
-      <Payroll />
-    </div>
+    <Router>
+      <div className="App">
+        <Body />     
+      </div>
+    </Router>
+
   );
 }
 

@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 
 
 const Payroll = ({users}) => {
+
     return(
 
         <div>
 
            <h1>
-               {users && users.length
+               {users.length
                ? users.map((user, key) => {
                return (<div key={key}>{user.content}</div>)
                })
