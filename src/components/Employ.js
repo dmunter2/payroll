@@ -1,10 +1,13 @@
 import React, {useState} from "react";
+import AllEmployees from './AllEmployees';
+import {addemployee} from '../redux/actions'
+import { connect } from "react-redux";
 
 
 
+const Employ = (employees) => {
 
-const Employees = () => {
-
+    console.log(employees)
 
     const [display, setDisplay] = useState({
         input: 'no-show',
@@ -12,7 +15,9 @@ const Employees = () => {
     })
 
     const [employee, setEmployee] = useState({
-        name: ''
+        name: '',
+        title: '',
+        wage: ''
     })
 
 
@@ -23,21 +28,23 @@ const Employees = () => {
             [e.target.name]: e.target.value
         })
      
-        console.log(employee.name)
     }
 
 
     const clickHandler = () => setDisplay({input: 'show-input', event: 'no-show'});
 
     const submitEmployee = () => {
+        addemployee(employee)
         setDisplay({input: 'no-show', event: 'no-show'})
-        setEmployee({name: ''})  
+        setEmployee({name: '', title: '', wage: ''})  
         
         setTimeout(() => {
             setDisplay({
-                event: 'show'
+                event: 'show',
+                input: 'no-show'
             })
-        }, 2000);
+        }, 400)
+
     };
 
 
@@ -60,6 +67,22 @@ const Employees = () => {
                 value={employee.name}
                 />
 
+                <input
+
+                    placeholder='title'
+                    onChange={changeHandler}
+                    name='title'
+                    value={employee.title}
+                />
+
+                <input
+
+                    placeholder='wage'
+                    onChange={changeHandler}
+                    name='wage'
+                    value={employee.wage}
+                />
+
                 <button onClick={submitEmployee}>Submit</button>
 
             </holder>
@@ -67,4 +90,8 @@ const Employees = () => {
     )
 }
 
-export default Employees;
+function mapStateToProps(state) {
+    const employees = state.employees
+    return employees;
+}
+export default connect(mapStateToProps)(Employ);
