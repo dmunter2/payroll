@@ -16,8 +16,7 @@ function Body(){
     return(
         <div className='body-holder'>
             <NavBar />
-
-            <div>
+            <div className='header_section_holder'>
                 <Header />
                 <div>
                     {/* I know there is a more efficient way to do this.. i will come back to it */}
@@ -28,7 +27,6 @@ function Body(){
                     <Route path='/noncompleted' component={NonCompleted} />
                 </div>
             </div>
-
         </div>
     )
 }

@@ -6,12 +6,9 @@ const NavBar = () => {
 
     return(
         <div className='navbar'>
-            <Link to='/employees'>Employees</Link>
-            <Link to='/noncompleted'>Non Completed</Link>
-            <Link to='hours'>Assign Hours</Link>
-
-
-
+            <Link className='navbar_item' to='/employees'>Employees</Link>
+            <Link className='navbar_item' to='/noncompleted'>Non Completed</Link>
+            <Link className='navbar_item' to='hours'>Assign Hours</Link>
         </div>
     )
 }
