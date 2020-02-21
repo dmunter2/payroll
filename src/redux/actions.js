@@ -1,7 +1,8 @@
-import { ADD_USER } from './actionTypes';
+import { ADD_EMPLOYEE } from './actionTypes';
 
-export const adduser = content => ({
-    type: ADD_USER,
+export const addemployee = content => (
+    {
+    type: ADD_EMPLOYEE,
     payload: {
         content
     }
