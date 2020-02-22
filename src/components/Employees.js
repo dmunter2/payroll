@@ -1,7 +1,7 @@
 import React, {useState, useReducer} from "react";
 import {addemployee} from '../redux/actions'
 import { connect } from "react-redux";
-
+import EmployeeCard from './EmployeeCard'
 
 class Employees extends React.Component{
 
@@ -86,9 +86,14 @@ class Employees extends React.Component{
             </section>
             {this.props.employees.map((name, key) => {
                 return (
-                    <div key={key}> name={name.wage} title={name.title} wage={name.wage}</div>
+                    <div key={key}>
+
+                    <EmployeeCard name={name.name} title={name.title} wage={name.wage} />
+                    </div>
                 )
             })}
+
+
         </div>
     )
     }
@@ -97,7 +102,6 @@ class Employees extends React.Component{
 
 
 const mapStateToProps = state => {
-    console.log(state.user.employees)
    return {employees: state.user.employees};
 }
 
