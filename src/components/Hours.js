@@ -10,4 +10,10 @@ const Hours = () => {
     )
 }
 
+// function mapStateToProps(state) {
+//     console.log(state.users)
+//     const users = state.users
+//     return users;
+// }
+
 export default Hours;

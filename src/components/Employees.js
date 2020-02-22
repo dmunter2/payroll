@@ -1,13 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useReducer} from "react";
 import AllEmployees from './AllEmployees';
 import {addemployee} from '../redux/actions'
 import { connect } from "react-redux";
 
 
-
-const Employ = (employees) => {
-
-    console.log(employees)
+const Employ = ({employees}) => {
 
     const [display, setDisplay] = useState({
         input: 'no-show',
@@ -34,6 +31,7 @@ const Employ = (employees) => {
     const clickHandler = () => setDisplay({input: 'show-input', event: 'no-show'});
 
     const submitEmployee = () => {
+        console.log(addemployee(employee))
         addemployee(employee)
         setDisplay({input: 'no-show', event: 'no-show'})
         setEmployee({name: '', title: '', wage: ''})  
@@ -58,7 +56,7 @@ const Employ = (employees) => {
 
 
             <button onClick={clickHandler}>Add Employee</button>
-            <holder className={display.input}>
+            <section className={display.input}>
                 <input 
 
                 placeholder='name'
@@ -85,13 +83,20 @@ const Employ = (employees) => {
 
                 <button onClick={submitEmployee}>Submit</button>
 
-            </holder>
+            </section>
+            <AllEmployees />
+
         </div>
     )
 }
 
-function mapStateToProps(state) {
-    const employees = state.employees
-    return employees;
-}
-export default connect(mapStateToProps)(Employ);
+const mapStateToProps = (state) => ({
+    employees: state.employees
+})
+
+export default connect(mapStateToProps, {addemployee})(Employ);
+
+
+
+
+
