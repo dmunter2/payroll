@@ -44,7 +44,6 @@ class Employees extends React.Component{
 
 
     render(){
-        console.log(this.state.name)
 
     return (
         <div className='employees'>
