@@ -1,100 +1,108 @@
 import React, {useState, useReducer} from "react";
-import AllEmployees from './AllEmployees';
 import {addemployee} from '../redux/actions'
 import { connect } from "react-redux";
 
 
-const Employ = ({employees}) => {
+class Employees extends React.Component{
 
-    const [display, setDisplay] = useState({
+
+    state = {
         input: 'no-show',
-        event: 'no-show'
-    })
-
-    const [employee, setEmployee] = useState({
+        event: 'no-show',
         name: '',
         title: '',
-        wage: ''
-    })
+        wage: '',
+        employee: ''
+    }
 
 
-    const changeHandler = e => {
+        changeHandler = e => {
         e.preventDefault();
-        setEmployee({
-            ...employee,
+        this.setState({
             [e.target.name]: e.target.value
         })
      
     }
 
 
-    const clickHandler = () => setDisplay({input: 'show-input', event: 'no-show'});
+    clickHandler = () => this.setState({input: 'show-input', event: 'no-show'});
 
-    const submitEmployee = () => {
-        console.log(addemployee(employee))
-        addemployee(employee)
-        setDisplay({input: 'no-show', event: 'no-show'})
-        setEmployee({name: '', title: '', wage: ''})  
+    submitEmployee = () => {
+        // console.log(this.props.addemployee(this.state.name))
+        this.props.addemployee(this.state)
+        // this.setState({input: 'no-show', event: 'no-show'})
+        // this.setState({name: '', title: '', wage: ''})  
         
-        setTimeout(() => {
-            setDisplay({
-                event: 'show',
-                input: 'no-show'
-            })
-        }, 400)
+        // setTimeout(() => {
+        //     this.setState({
+        //         event: 'show',
+        //         input: 'no-show'
+        //     })
+        // }, 400)
 
     };
 
 
+    render(){
+        console.log(this.state.name)
 
     return (
         <div className='employees'>
             <div className='event-header'>
-                <h1 className={display.event}>Employee Added</h1>
+                <h1 className={this.state.event}>Employee Added</h1>
             </div>
 
 
 
-            <button onClick={clickHandler}>Add Employee</button>
-            <section className={display.input}>
+            <button onClick={this.clickHandler}>Add Employee</button>
+            <section className={this.state.input}>
                 <input 
 
                 placeholder='name'
-                onChange={changeHandler}
+                onChange={this.changeHandler}
                 name='name'
-                value={employee.name}
+                    value={this.state.name}
                 />
 
                 <input
 
                     placeholder='title'
-                    onChange={changeHandler}
+                    onChange={this.changeHandler}
                     name='title'
-                    value={employee.title}
+                    value={this.state.title}
                 />
 
                 <input
 
                     placeholder='wage'
-                    onChange={changeHandler}
+                    onChange={this.changeHandler}
                     name='wage'
-                    value={employee.wage}
+                    value={this.state.wage}
                 />
 
-                <button onClick={submitEmployee}>Submit</button>
+                <button onClick={this.submitEmployee}>Submit</button>
+               
 
             </section>
-            <AllEmployees />
-
+            {this.props.employees.map((name, key) => {
+                return (
+                    <div key={key}> name={name.wage} title={name.title} wage={name.wage}</div>
+                )
+            })}
         </div>
     )
+    }
 }
 
-const mapStateToProps = (state) => ({
-    employees: state.employees
-})
 
-export default connect(mapStateToProps, {addemployee})(Employ);
+
+const mapStateToProps = state => {
+    console.log(state.user.employees)
+   return {employees: state.user.employees};
+}
+
+export default connect(mapStateToProps, {addemployee})(Employees)
+
 
 
 
