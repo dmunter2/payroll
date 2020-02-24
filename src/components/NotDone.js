@@ -9,7 +9,10 @@ const NonCompleted = ({hoursWorked}) => {
         <div className='employees'>
             <h1>{hoursWorked.map((hours, index) => {
                 return(
-                <div key={index}>{hours}</div>
+                <div key={index} className='non-completed'>
+                    <h1>{hours[0].hoursWorked}</h1>
+                    <h1>{hours[0].month} - {hours[0].day} - {hours[0].year}</h1>
+                </div>
                 )
             })}</h1>
         </div>
@@ -19,8 +22,8 @@ const NonCompleted = ({hoursWorked}) => {
 
 function mapStateToProps(state) {
     console.log(state.user.hours)
-
     const hoursWorked = state.user.hours;
+    
     return {hoursWorked};
 }
 export default connect(mapStateToProps)(NonCompleted);

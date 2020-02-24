@@ -6,9 +6,9 @@ export const addemployee = content => ({
     payload: content
 })
 
-export const addhours = content => ({
+export const addhours = (content) => ({
     type: ADD_HOURS,
-    payload: content
+    payload: [content]
 })
 
 
