@@ -14,10 +14,7 @@ class Hours extends React.Component{
     }
 
     clickHandler = e => {
-        console.log(addhours(this.props.employees[0].wage))
-        addhours(this.props.employees[0].wage)
-        this.setState({ hoursWorked: '' })
-
+        this.props.addhours(this.state.hoursWorked)
     }
 
     render(){
@@ -26,7 +23,7 @@ class Hours extends React.Component{
 
     return (
         <div className='employees'>
-            <h1>Hours</h1>
+            <h1>Hours Worked</h1>
             {this.props.employees.map((name, key) => {
                 return(
                 <div key={key}>
@@ -36,7 +33,6 @@ class Hours extends React.Component{
                     <input
                     placeholder='text'
                     name='hoursWorked'
-                    value={this.state.hoursWorked}
                     onChange={this.changeHandler}
                     
                     /> 
@@ -52,9 +48,8 @@ class Hours extends React.Component{
 }
 
 function mapStateToProps(state) {
-    console.log(state.user.employees)
     const employees = state.user.employees
     return{employees}
 }
 
-export default connect(mapStateToProps)(Hours);
+export default connect(mapStateToProps, {addhours})(Hours);
