@@ -2,10 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import {addhours} from '../redux/actions'
 
+
+
+
 class Hours extends React.Component{
 
+
+
+
     state = {
-        hoursWorked: ''
+        hoursWorked: '',
+        month: '',
+        day: '',
+        year: ''
     }
 
 
@@ -13,9 +22,20 @@ class Hours extends React.Component{
         this.setState({hoursWorked: e.target.value})
     }
 
-    clickHandler = e => {
-        this.props.addhours(this.state.hoursWorked)
+
+    changeMonth = e => {
+        this.setState({month: e.target.value})
     }
+
+    changeDay = e => {
+        this.setState({day: e.target.value})
+    }
+
+
+    changeYear = e => {
+        this.setState({ year: e.target.value })
+    }
+
 
     render(){
 
@@ -27,6 +47,34 @@ class Hours extends React.Component{
             {this.props.employees.map((name, key) => {
                 return(
                 <div key={key}>
+                    <div>
+
+
+                        <input 
+                        placeholder='month'
+                        name='month'
+                        onChange={this.changeMonth}
+                        />
+
+
+                        <input
+                            placeholder='day'
+                            name='day'
+                            onChange={this.changeDay}
+                        />
+
+
+                        <input
+                            placeholder='year'
+                            name='year'
+                            onChange={this.changeYear}
+                        />
+
+
+
+
+
+                    </div>
                     <h1>
                         {name.name} {name.title}  {name.wage}
                     </h1>
@@ -36,7 +84,7 @@ class Hours extends React.Component{
                     onChange={this.changeHandler}
                     
                     /> 
-                    <button onClick={this.clickHandler}>Add Hours</button>  
+                    <button onClick={() => {console.log(this.props.addhours(this.state))}}>Add Hours</button>  
                     
                 </div>
                 )
