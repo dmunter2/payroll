@@ -1,13 +1,26 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 
-const NonCompleted = () => {
+const NonCompleted = ({hoursWorked}) => {
+
 
     return (
         <div className='employees'>
-            <h1>NonCompleted</h1>
+            <h1>{hoursWorked.map((hours, index) => {
+                return(
+                <div key={index}>{hours}</div>
+                )
+            })}</h1>
         </div>
     )
 }
 
-export default NonCompleted;
+
+function mapStateToProps(state) {
+    console.log(state.user.hours)
+
+    const hoursWorked = state.user.hours;
+    return {hoursWorked};
+}
+export default connect(mapStateToProps)(NonCompleted);
