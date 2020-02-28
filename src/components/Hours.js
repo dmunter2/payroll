@@ -8,8 +8,6 @@ import {addhours} from '../redux/actions'
 class Hours extends React.Component{
 
 
-
-
     state = {
         hoursWorked: '',
         month: '',
